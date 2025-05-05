@@ -1,0 +1,18 @@
+services:
+
+  backend:
+    image: nginx:alpine
+    volumes:
+      - ./data:/usr/share/nginx/html:ro
+    restart: unless-stopped
+
+  getent:
+    image: nss-http/getent:${BASE_VERSION:-22.04}
+    build:
+      args:
+        BASE_IMAGE: ${BASE_IMAGE:-ubuntu}
+        BASE_VERSION: ${BASE_VERSION:-22.04}
+        BUILD_TYPE: ${BUILD_TYPE:-Release}
+    depends_on:
+      - backend
+    restart: "no"

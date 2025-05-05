@@ -1,0 +1,41 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/debian
+{
+	"name": "NSS HTTP",
+    "build": {
+		"dockerfile": "Dockerfile",
+		"args": {}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker": "latest"
+	},
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack",
+				"ms-azuretools.vscode-docker",
+                "jbenden.c-cpp-flylint",
+				"ahmadalli.vscode-nginx-conf",
+				"xaver.clang-format"
+            ],
+			"settings": {
+				"task.autoDetect": "off",
+				"cmake.sourceDirectory": "${workspaceFolder}/src",
+				"cmake.configureOnEdit": false,
+				"cmake.configureOnOpen": false,
+				"c-cpp-flylint.language": "c",
+				"c-cpp-flylint.standard": [
+					"c11"
+				],
+				"c-cpp-flylint.cppcheck.enable": true,
+				"c-cpp-flylint.clang.enable": false,
+				"c-cpp-flylint.flawfinder.enable": false,
+				"c-cpp-flylint.flexelint.enable": false,
+				"c-cpp-flylint.lizard.enable": false,
+				"clang-format.executable": "/usr/bin/clang-format-16",
+				"editor.formatOnSave": false
+			}
+        }
+    }
+}

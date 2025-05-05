@@ -1,0 +1,60 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false
+    },
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "docker compose build",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "passwd",
+            "type": "shell",
+            "command": "./getent.sh passwd",
+            "problemMatcher": [],
+            "group": "test",
+        },
+        {
+            "label": "group",
+            "type": "shell",
+            "command": "./getent.sh group",
+            "problemMatcher": [],
+            "group": "test",
+        },
+        {
+            "label": "shadow",
+            "type": "shell",
+            "command": "./getent.sh shadow",
+            "problemMatcher": [],
+            "group": "test",
+        },
+        {
+            "label": "all",
+            "dependsOn": [
+                "passwd",
+                "group",
+                "shadow"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        }
+    ]
+}
